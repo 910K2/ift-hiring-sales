@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IFT Strategic Pivot Framework</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8f7f3; color: #1a1a18; padding: 2rem; max-width: 920px; margin: 0 auto; }
+h1 { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+.meta { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
+.tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.tab { padding: 7px 16px; border-radius: 8px; border: 0.5px solid #ccc; background: #fff; color: #666; font-size: 13px; cursor: pointer; transition: all .15s; }
+.tab:hover { background: #f1efe8; }
+.tab.active { background: #185FA5; color: #e6f1fb; border-color: #185FA5; }
+.sec { display: none; }
+.sec.active { display: block; }
+.card { background: #fff; border: 0.5px solid #e0ded8; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.card-title { font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #1a1a18; }
+.card-sub { font-size: 12px; color: #666; line-height: 1.65; margin-bottom: 10px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.metric { background: #f1efe8; border-radius: 8px; padding: 12px 10px; text-align: center; }
+.metric-num { font-size: 22px; font-weight: 500; }
+.metric-label { font-size: 11px; color: #666; margin-top: 3px; line-height: 1.4; }
+.row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; padding: 9px 11px; border-radius: 8px; background: #f1efe8; }
+.row.green { background: #eaf3de; }
+.row.red { background: #fcebeb; }
+.row.blue { background: #e6f1fb; }
+.row.purple { background: #eeedfe; }
+.row.amber { background: #faeeda; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.row-text { font-size: 12px; line-height: 1.55; color: #1a1a18; }
+.row-sub { font-size: 11px; color: #666; margin-top: 3px; line-height: 1.45; }
+.badge { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 8px; margin: 0 4px 5px 0; }
+.b-red    { background: #fcebeb; color: #a32d2d; }
+.b-green  { background: #eaf3de; color: #27500a; }
+.b-blue   { background: #e6f1fb; color: #0c447c; }
+.b-amber  { background: #faeeda; color: #633806; }
+.b-purple { background: #eeedfe; color: #3c3489; }
+.b-gray   { background: #f1efe8; color: #444441; }
+.phase-row { display: grid; grid-template-columns: 96px 1fr; gap: 14px; margin-bottom: 12px; align-items: start; }
+.phase-pill { font-size: 11px; font-weight: 500; padding: 5px 8px; border-radius: 8px; text-align: center; line-height: 1.3; }
+.quote-block { border-left: 3px solid #185FA5; padding: 11px 15px; background: #f1efe8; border-radius: 0 8px 8px 0; margin-bottom: 10px; font-size: 13px; line-height: 1.75; font-style: italic; color: #1a1a18; }
+.divider { border: none; border-top: 0.5px solid #e0ded8; margin: 13px 0; }
+.highlight-box { background: #f1efe8; border-radius: 12px; padding: 1rem 1.25rem; margin-top: 1rem; }
+.section-label { font-size: 11px; font-weight: 500; color: #888; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.two-col-contrast { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.contrast-bad  { padding: 12px; background: #fcebeb; border-radius: 8px; }
+.contrast-good { padding: 12px; background: #eaf3de; border-radius: 8px; }
+.contrast-label { font-size: 11px; font-weight: 500; margin-bottom: 6px; }
+.contrast-body  { font-size: 12px; line-height: 1.7; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { text-align: left; padding: 7px 10px; color: #666; font-weight: 500; border-bottom: 0.5px solid #e0ded8; background: #f8f7f3; }
+td { padding: 7px 10px; border-bottom: 0.5px solid #f1efe8; vertical-align: top; line-height: 1.5; }
+tr:last-child td { border-bottom: none; }
+.warn { color: #a32d2d; font-weight: 500; }
+.ok   { color: #27500a; font-weight: 500; }
+.caution { color: #633806; font-weight: 500; }
+@media (max-width: 620px) {
+  .grid2, .grid3, .two-col-contrast { grid-template-columns: 1fr; }
+  .phase-row { grid-template-columns: 1fr; }
+  body { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<h1>IFT — Strategic Pivot Framework</h1>
+<p class="meta">From outsourcing supplier &nbsp;→&nbsp; Japan-India telematics integrator &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; Office of the Managing Director</p>
+
+<div class="tabs">
+  <button class="tab active" onclick="show('macro',this)">Macro shift</button>
+  <button class="tab" onclick="show('pivot',this)">Pivot logic</button>
+  <button class="tab" onclick="show('org',this)">Org + talent</button>
+  <button class="tab" onclick="show('sales',this)">Sales + marketing</button>
+  <button class="tab" onclick="show('roadmap',this)">Roadmap</button>
+</div>
+
+<!-- ═══ MACRO ═══ -->
+<div id="sec-macro" class="sec active">
+
+  <div class="grid3" style="margin-bottom:1rem">
+    <div class="metric">
+      <div class="metric-num" style="color:#E24B4A">↓</div>
+      <div class="metric-label">Japan → India outsourcing interest declining</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num" style="color:#BA7517">→ VN / CN</div>
+      <div class="metric-label">Vietnam &amp; China returning as alternatives</div>
+    </div>
+    <div class="metric">
+      <div class="metric-num" style="color:#185FA5">AI</div>
+      <div class="metric-label">Replacing routine coding demand at scale</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Why Japanese clients are withdrawing from India</div>
+    <div class="row red"><div class="dot" style="background:#e24b4a"></div>
+      <div class="row-text">Narrow skill silos — engineers own one language, one layer, and stop there
+        <div class="row-sub">No accountability when a fault crosses a boundary. Each team points to the next.</div>
+      </div>
+    </div>
+    <div class="row red"><div class="dot" style="background:#e24b4a"></div>
+      <div class="row-text">Zero-RCA culture — "that is the other team's problem" is the default response
+        <div class="row-sub">Japanese clients expect faults to be owned, traced, and explained. That expectation is consistently unmet.</div>
+      </div>
+    </div>
+    <div class="row red"><div class="dot" style="background:#e24b4a"></div>
+      <div class="row-text">Spec dependency — cannot fill in what is not written
+        <div class="row-sub">Japanese software culture relies on tacit understanding. Indian outsourcing models are built on exhaustive written specs. The gap is structural, not personal.</div>
+      </div>
+    </div>
+    <div class="row"><div class="dot" style="background:#BA7517"></div>
+      <div class="row-text">AI commoditisation of routine coding
+        <div class="row-sub">CRUD code, test scripts, boilerplate API glue — all AI-generatable by 2025. The core value proposition of "cheap Indian coding" is dissolving faster than the industry is acknowledging.</div>
+      </div>
+    </div>
+    <div class="row"><div class="dot" style="background:#BA7517"></div>
+      <div class="row-text">Vietnam and China filling the vacuum on different axes
+        <div class="row-sub">Vietnam: cost + perceived compliance. China: technical depth in hardware-software integration. India's middle position is the most exposed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:#639922">
+    <div class="card-title" style="color:#27500a">What survives the compression — and where IFT can stand</div>
+    <div class="row green"><div class="dot" style="background:#639922"></div>
+      <div class="row-text" style="color:#1a1a18">Deep domain knowledge that AI cannot hallucinate through
+        <div class="row-sub" style="color:#3b6d11">Telematics protocol stacks, hardware-software integration, field diagnostics — these require years of physical system experience, not token prediction.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#639922"></div>
+      <div class="row-text" style="color:#1a1a18">Trusted relationships with Japanese IP holders willing to sell into India
+        <div class="row-sub" style="color:#3b6d11">You hold these relationships personally. They cannot be replicated by a competitor starting from zero.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#639922"></div>
+      <div class="row-text" style="color:#1a1a18">On-the-ground India market intelligence that a Tokyo HQ cannot replicate remotely
+        <div class="row-sub" style="color:#3b6d11">Which sectors are actually buying. Which procurement paths work. Which relationships open which doors. This is embedded knowledge.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#639922"></div>
+      <div class="row-text" style="color:#1a1a18">Full-stack fault ownership — the one capability India's outsourcing model has never delivered
+        <div class="row-sub" style="color:#3b6d11">Shaik's arrival makes this real for the first time. It is also the most defensible differentiator IFT can build.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ PIVOT ═══ -->
+<div id="sec-pivot" class="sec">
+
+  <div class="card">
+    <div class="card-title">The fundamental repositioning</div>
+    <div class="two-col-contrast">
+      <div class="contrast-bad">
+        <div class="contrast-label" style="color:#a32d2d">Current model — structurally dying</div>
+        <div class="contrast-body" style="color:#a32d2d">
+          Japanese client sends specification<br>
+          IFT delivers code fragments<br>
+          Billed by person-month<br>
+          Value = low-cost labour<br>
+          Directly replaceable by AI or Vietnam
+        </div>
+      </div>
+      <div class="contrast-good">
+        <div class="contrast-label" style="color:#27500a">Target model — structurally resilient</div>
+        <div class="contrast-body" style="color:#27500a">
+          You originate the opportunity<br>
+          Bring Japanese product to India market<br>
+          Own the full integration stack<br>
+          Value = domain + relationship + reach<br>
+          AI is a tool IFT uses, not a threat
+        </div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:#666;line-height:1.65">The shift is not incremental. It requires a different sales motion, a different type of talent, and a different story about what IFT is. The engineering rebuild — Shaik, Bhopal, Praveen, Platform Engineering — is the technical foundation. But without the commercial repositioning, that foundation has no market to serve.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Three revenue streams in the target model</div>
+    <div class="row blue"><div class="dot" style="background:#185FA5"></div>
+      <div class="row-text"><span style="font-weight:500;color:#0c447c">Stream 1 — Japan-to-India product sales</span>
+        <div class="row-sub">TAKUMI AGV/AMR, CGSemicon, REALIZE — IFT as authorised local distributor and integrator. Revenue on product margin plus recurring support and maintenance fee. You already hold the Japanese-side relationships; what is missing is the Indian-side sales engine.</div>
+      </div>
+    </div>
+    <div class="row purple"><div class="dot" style="background:#7F77DD"></div>
+      <div class="row-text"><span style="font-weight:500;color:#3c3489">Stream 2 — Full-stack telematics platform services</span>
+        <div class="row-sub">Not "we write code for you" but "we run your IoT data pipeline end to end." Managed service model. Target sectors: India fleet management, logistics, defence, Indian Railways. MDVR is the proof of concept — a complete device-to-dashboard system built by one team.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#639922"></div>
+      <div class="row-text"><span style="font-weight:500;color:#27500a">Stream 3 — RCA and technical consulting retainer</span>
+        <div class="row-sub">Clients with existing telematics deployments that break and cannot find anyone who can explain why. Shaik-led. High margin, low headcount. Each case closed is also a sales proof point for Stream 2 conversations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Why MDVR is the pivotal sales proof point</div>
+    <div class="card-sub">Most Indian IT companies can show a portfolio of web applications. MDVR is different: it demonstrates that one team integrated a physical device, firmware, a communication stack, a server platform, and a management dashboard into a working system deployed in the field. That is the integration capability Japanese industrial clients need, and it is extraordinarily rare in the India market.</div>
+    <span class="badge b-purple">MDVR = end-to-end integration proof</span>
+    <span class="badge b-blue">Device → comms → cloud → dashboard</span>
+    <span class="badge b-green">Fleet · logistics · defence verticals</span>
+  </div>
+
+</div>
+
+<!-- ═══ ORG + TALENT ═══ -->
+<div id="sec-org" class="sec">
+
+  <div class="card">
+    <div class="card-title">People decisions mapped directly to the pivot</div>
+
+    <div class="section-label" style="margin-top:4px">Invest — these people are the pivot</div>
+    <div class="row green"><div class="dot" style="background:#639922"></div>
+      <div class="row-text"><span class="ok">Praveen HG — COO, incoming CEO/MD</span>
+        <div class="row-sub">Multi-language engineer (Android, Kotlin, .NET, Python), demonstrated loyalty, product and mobile depth. Market value is 11–14 LPA in the 2025–26 Bangalore market. His retention is existential — if he leaves before the transition, the succession plan collapses. Salary correction must happen now, not as a future promise.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#639922"></div>
+      <div class="row-text"><span class="ok">Bhopal Urs — CTO</span>
+        <div class="row-sub">Architecture orientation and full-stack instinct. The technical anchor for the Platform Engineering rebuild. His counterpart role to Praveen's business leadership is essential for the transition period.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#639922"></div>
+      <div class="row-text"><span class="ok">Shaik — Comms / RCA lead (new hire)</span>
+        <div class="row-sub">The first person inside IFT who can trace a fault across all four layers. Two years of experience, but the logical architecture is already formed. Foundational for Streams 2 and 3. Her onboarding is the starting gun for the capability rebuild.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#639922"></div>
+      <div class="row-text"><span class="ok">Sr C/C++ Comms engineer — new hire required</span>
+        <div class="row-sub">Shaik cannot build the Comms layer alone. One engineer with genuine socket-level C/C++ experience and protocol debugging ability (9–13 LPA) changes the entire capability picture. This hire directly enables Stream 2.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">Assess — outcome determines path</div>
+    <div class="row amber"><div class="dot" style="background:#BA7517"></div>
+      <div class="row-text"><span class="caution">DB senior — objective assessment required</span>
+        <div class="row-sub">Five technical checks: (1) read and interpret EXPLAIN ANALYZE output, (2) design a time-series schema for high-frequency IoT data, (3) describe replication configuration, (4) define diagnostic steps for a data-gap fault, (5) write a Python + pandas automation query. Personality, tenure, and protected relationships are not assessment criteria. Result determines retention or replacement.</div>
+      </div>
+    </div>
+    <div class="row"><div class="dot" style="background:#BA7517"></div>
+      <div class="row-text"><span class="caution">Java-only Comms engineers — quiet redeployment track</span>
+        <div class="row-sub">No confrontation. Comms work migrates progressively to the C/C++ track. Java engineers are offered retraining toward server-platform work (Layer 3), where Java is genuinely valid. Those who cannot or will not transition are managed out quietly over the 3–6 month window.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">Critical gap — this hire unlocks everything else</div>
+    <div class="row red"><div class="dot" style="background:#e24b4a"></div>
+      <div class="row-text"><span class="warn">Sales + Marketing leader — most urgent hire on the entire roadmap</span>
+        <div class="row-sub">Without this person, Streams 1, 2, and 3 remain internal conversations. The engineering capability that Shaik, Bhopal, and Praveen are building has no commercial surface — no one to take it to a defence procurement office in Delhi, to a railway systems buyer in Mumbai, to a Japanese partner's India country head, or to an automotive Tier-1 plant director in Pune. Technical teams do not open those doors. Relationships do. And relationships in Indian enterprise procurement are built over months of in-person engagement by someone who already has a partial foot in the room.<br><br>
+        The profile is specific and rare: this person must be able to sit across the table from a Japanese MD who has been burned by India outsourcing before and rebuild trust through fluency — not just linguistic fluency, but cultural fluency, the kind that understands why a Japanese client will never say directly that they are dissatisfied, and acts on that signal before the contract ends. That same person must then walk into an Indian Railways procurement meeting and know which stakeholder actually controls the decision, and which title on the org chart is ceremonial.<br><br>
+        IFT has no one who can do this today. The MD currently carries the Japan relationship personally, and there is no equivalent India-side commercial presence. When the MD transitions to an advisory role, that gap becomes an emergency. Hiring ahead of the transition — not after — is the difference between a managed handover and a commercial vacuum.<br><br>
+        Budget accordingly: 15–25 LPA is not extravagant for someone with a genuine network in two or three of the target sectors. The ROI on a single contract they originate will recover the annual cost within months. The question is not whether IFT can afford this hire. The question is whether IFT can afford to continue without one.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Profile — the Sales + Marketing hire IFT actually needs</div>
+    <div class="card-sub">This is not a conventional Indian IT sales profile. The candidate pool is small but the person exists. The profile combines elements that most India sales recruiters will not search for together.</div>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>What to look for</th><th>Why it matters</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Language</td>
+          <td>Japanese preferred, English mandatory</td>
+          <td>Can represent IFT directly to Japanese partners without you in the room</td>
+        </tr>
+        <tr>
+          <td>Sales experience</td>
+          <td>B2B enterprise, industrial or IoT technology</td>
+          <td>Telematics and AGV/AMR procurement cycles are long and technical — consumer sales instincts do not transfer</td>
+        </tr>
+        <tr>
+          <td>Sector network</td>
+          <td>Defence, Indian Railways, automotive Tier-1 (Pune / Chennai)</td>
+          <td>These are the sectors with budget and integration complexity that justify IFT's premium</td>
+        </tr>
+        <tr>
+          <td>Cultural fluency</td>
+          <td>Reads Japanese client's unspoken expectations</td>
+          <td>The failures you have seen in Japanese-India outsourcing are largely failures of cultural reading, not technical execution</td>
+        </tr>
+        <tr>
+          <td>Salary range</td>
+          <td>15–25 LPA depending on network depth</td>
+          <td>The ROI on one effective hire here exceeds any engineering cost saving by an order of magnitude</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══ SALES ═══ -->
+<div id="sec-sales" class="sec">
+
+  <div class="card">
+    <div class="card-title">Go-to-market architecture</div>
+    <div class="two-col-contrast" style="gap:12px">
+      <div>
+        <div class="section-label">Inbound — credibility pull</div>
+        <div class="row"><div class="dot" style="background:#185FA5"></div>
+          <div class="row-text" style="font-size:12px">IFT website rebuilt as a technical authority site. Not "we do IT outsourcing" but "we solve telematics faults at layer depth." The website audit already underway is the foundation for this.
+          </div>
+        </div>
+        <div class="row"><div class="dot" style="background:#185FA5"></div>
+          <div class="row-text" style="font-size:12px">Each RCA case that Shaik closes becomes a publishable proof point — anonymised if needed, but specific: device type, fault class, layers diagnosed, time to resolution.</div>
+        </div>
+        <div class="row"><div class="dot" style="background:#185FA5"></div>
+          <div class="row-text" style="font-size:12px">LinkedIn presence: Praveen, Bhopal, and Shaik posting real technical content. The absence of this today is a credibility gap that costs nothing to fix.</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Outbound — relationship push</div>
+        <div class="row green"><div class="dot" style="background:#639922"></div>
+          <div class="row-text" style="font-size:12px">Your Japan network: TAKUMI, REALIZE, CGSemicon introductions to Indian buyers. You hold the trust on the Japanese side. The Sales hire converts that trust into signed contracts on the India side.</div>
+        </div>
+        <div class="row green"><div class="dot" style="background:#639922"></div>
+          <div class="row-text" style="font-size:12px">JETRO / JBIC / Indo-Japan Chamber: active participation, not passive membership. These organisations surface Japanese companies actively looking for India entry partners.</div>
+        </div>
+        <div class="row green"><div class="dot" style="background:#639922"></div>
+          <div class="row-text" style="font-size:12px">Direct defence, railway, and logistics outreach via the Sales hire's own network — the sector relationships that cannot be built from scratch by a technical team.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Positioning statement — working draft</div>
+    <div class="quote-block">
+      "IFT is the only India-based telematics team that can trace a fault from the device frame to the database query plan — and fix it. We bring Japan's most advanced IoT and AGV/AMR technology to Indian industry, with the local integration depth to make it actually work."
+    </div>
+    <div style="font-size:12px;color:#666;line-height:1.65">This statement is differentiated from every Indian IT outsourcer. It is also verifiable — which is precisely what makes it credible to Japanese clients who have experienced the India outsourcing model's limits firsthand. The key word is "only." It should remain true, which means the Platform Engineering capability must be real before the statement is made publicly.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">The message for Japanese partners — why IFT now, not before</div>
+    <div class="card-sub">Japanese companies that had negative India experiences will ask: what has changed? The honest and accurate answer has three parts.</div>
+    <div class="row blue"><div class="dot" style="background:#185FA5"></div>
+      <div class="row-text" style="font-size:12px"><span style="font-weight:500">The team has changed.</span> The silo structure that caused past failures is being systematically dismantled. RCA capability now exists inside the organisation for the first time.
+      </div>
+    </div>
+    <div class="row blue"><div class="dot" style="background:#185FA5"></div>
+      <div class="row-text" style="font-size:12px"><span style="font-weight:500">The model has changed.</span> IFT is no longer selling person-months. It is selling outcomes — integration, fault ownership, managed platform operation.
+      </div>
+    </div>
+    <div class="row blue"><div class="dot" style="background:#185FA5"></div>
+      <div class="row-text" style="font-size:12px"><span style="font-weight:500">You are still here.</span> The trust relationship that Japanese partners have with the Managing Director is the continuity bridge. That relationship cannot be manufactured. It transfers credibility to the new structure.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ ROADMAP ═══ -->
+<div id="sec-roadmap" class="sec">
+
+  <div class="card">
+    <div class="card-title">Execution sequence</div>
+
+    <div class="phase-row">
+      <div class="phase-pill" style="background:#e1f5ee;color:#0f6e56">Now – 3 mo</div>
+      <div style="font-size:12px;line-height:1.7;color:#1a1a18">
+        Shaik onboarded and first RCA cases documented formally with layer-by-layer evidence. Praveen's salary corrected to market. DB senior objective assessment criteria designed. IFT website audit completed and rebuild brief prepared. TAKUMI and REALIZE India conversations advanced with concrete next steps. Sales + Marketing hire search initiated.
+      </div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-pill" style="background:#e6f1fb;color:#0c447c">3 – 6 mo</div>
+      <div style="font-size:12px;line-height:1.7;color:#1a1a18">
+        Platform Engineering team formally established under IT Infrastructure manager. Sr C/C++ Comms engineer hired and working alongside Shaik. DB assessment concluded — retention or replacement decision made and executed. Sales + Marketing hire identified and offer made. First Japan-product pilot (TAKUMI or CGSemicon) with one named Indian anchor client underway. IFT website rebuilt and live.
+      </div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-pill" style="background:#eeedfe;color:#3c3489">6 – 12 mo</div>
+      <div style="font-size:12px;line-height:1.7;color:#1a1a18">
+        Praveen formally elevated to CEO/MD. You transition to advisory and business development role. Sales hire generating independent pipeline from defence, railway, and logistics sector outreach. RCA consulting retainer signed with 2–3 anchor clients generating recurring revenue. IFT positioning as "Japan-India telematics integrator" publicly stated on website and in market communications. Telematics Platform Engineer designation framework (Jr / Sr / Lead) live and used in all new hiring.
+      </div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-pill" style="background:#faeeda;color:#633806">12 – 24 mo</div>
+      <div style="font-size:12px;line-height:1.7;color:#1a1a18">
+        All three revenue streams generating meaningful income. IFT no longer dependent on person-month outsourcing contracts as primary revenue. The organisation can survive and grow independently of the outsourcing market. REALIZE Business Director role for you formalised if that path is chosen. The pivot, at this point, is complete.
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="section-label" style="margin-bottom:8px">The single most consequential decision in the next 90 days</div>
+    <div style="font-size:13px;line-height:1.75;color:#1a1a18">
+      Hiring a Sales and Marketing leader who can read Japanese client expectations and navigate Indian enterprise procurement simultaneously. Engineering capability without this person is a solution with no market. Every improvement on the roadmap — Shaik's RCA work, the C/C++ Comms rebuild, the Platform Engineering structure, the TAKUMI pilot — reaches its full value only when there is someone who can open the right doors and close the right conversations.<br><br>
+      <span style="font-weight:500">That person is the pivot's commercial engine. Find them first.</span><br><br>
+      <span style="font-style:italic;color:#444441">The Sales and Marketing hire is the first gate that everything else depends on. Engineering can be built. But the person who can read a Japanese client's unspoken expectations and open the doors of Indian enterprise procurement — that individual cannot be manufactured by engineering alone. This single hire determines the velocity of the entire roadmap.</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1rem">
+    <div class="card-title">Summary — what changes, what stays the same</div>
+    <table>
+      <thead>
+        <tr><th>Dimension</th><th>Current state</th><th>Target state</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Revenue model</td>
+          <td class="warn">Person-month outsourcing</td>
+          <td class="ok">Product distribution + managed service + RCA retainer</td>
+        </tr>
+        <tr>
+          <td>Technical identity</td>
+          <td class="warn">Siloed code delivery</td>
+          <td class="ok">Full-stack fault ownership (L1 device → L4 DB)</td>
+        </tr>
+        <tr>
+          <td>Market direction</td>
+          <td class="warn">Japan to India (labour export)</td>
+          <td class="ok">Japan to India (product + capability import)</td>
+        </tr>
+        <tr>
+          <td>Competitive moat</td>
+          <td class="warn">Cost — eroding rapidly</td>
+          <td class="ok">Domain depth + Japan relationship + RCA proof</td>
+        </tr>
+        <tr>
+          <td>Leadership</td>
+          <td class="warn">MD-dependent</td>
+          <td class="ok">Praveen (CEO/MD) + Bhopal (CTO) + Sales hire</td>
+        </tr>
+        <tr>
+          <td>Your role</td>
+          <td class="warn">Operational Managing Director</td>
+          <td class="ok">Advisory + Japan-India BD — where your network is most valuable</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+function show(name, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
