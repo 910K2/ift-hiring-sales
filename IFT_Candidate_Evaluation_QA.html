@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candidate Evaluation — Tanya & Kunal</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8f7f3; color: #1a1a18; padding: 2rem; max-width: 920px; margin: 0 auto; line-height: 1.75; }
+h1 { font-size: 19px; font-weight: 600; margin-bottom: 4px; }
+.meta { font-size: 12px; color: #888; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #e0ded8; }
+.tabs { display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.tab { padding: 7px 16px; border-radius: 8px; border: 0.5px solid #ccc; background: #fff; color: #666; font-size: 13px; cursor: pointer; transition: all .15s; }
+.tab.active { background: #185FA5; color: #e6f1fb; border-color: #185FA5; }
+.sec { display: none; }
+.sec.active { display: block; }
+.card { background: #fff; border: 0.5px solid #e0ded8; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+.card-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.card-sub { font-size: 12px; color: #666; line-height: 1.65; margin-bottom: 10px; }
+.row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 7px; padding: 9px 11px; border-radius: 8px; background: #f1efe8; }
+.row.green { background: #eaf3de; }
+.row.red { background: #fcebeb; }
+.row.blue { background: #e6f1fb; }
+.row.amber { background: #faeeda; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.row-text { font-size: 12.5px; line-height: 1.65; color: #1a1a18; }
+.row-sub { font-size: 11.5px; color: #666; margin-top: 3px; line-height: 1.55; }
+.badge { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 6px; margin: 0 4px 5px 0; }
+.b-green { background: #eaf3de; color: #27500a; }
+.b-red { background: #fcebeb; color: #a32d2d; }
+.b-blue { background: #e6f1fb; color: #0c447c; }
+.b-amber { background: #faeeda; color: #633806; }
+.b-gray { background: #f1efe8; color: #444; }
+.divider { border: none; border-top: 0.5px solid #e0ded8; margin: 1.25rem 0; }
+.section-label { font-size: 11px; font-weight: 600; color: #888; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 0.5rem 0 1rem; }
+th { text-align: left; padding: 8px 10px; color: #666; font-weight: 500; border-bottom: 0.5px solid #e0ded8; background: #f8f7f3; }
+td { padding: 8px 10px; border-bottom: 0.5px solid #f1efe8; vertical-align: top; line-height: 1.6; }
+tr:last-child td { border-bottom: none; }
+.ok { color: #27500a; font-weight: 500; }
+.warn { color: #a32d2d; font-weight: 500; }
+.caution { color: #633806; font-weight: 500; }
+.q-block { background: #f8f7f3; border: 0.5px solid #e0ded8; border-radius: 10px; padding: 1rem 1.25rem; margin: 1rem 0; }
+.q-block.tanya { border-left: 3px solid #1D9E75; }
+.q-block.kunal { border-left: 3px solid #185FA5; }
+.q-block.both { border-left: 3px solid #7F77DD; }
+.q-label { font-size: 10px; font-weight: 700; color: #888; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+.q-text { font-size: 13px; font-weight: 600; color: #1a1a18; font-style: italic; margin-bottom: 10px; line-height: 1.55; }
+.q-section { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin: 8px 0 4px; }
+.q-content { font-size: 12.5px; color: #1a1a18; line-height: 1.7; }
+.q-warn { font-size: 12px; color: #a32d2d; margin-top: 6px; font-style: italic; }
+.highlight { background: #f1efe8; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1rem; }
+.star { color: #BA7517; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1rem; }
+@media(max-width:620px){ .grid2{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<h1>Candidate Evaluation — Third Interview</h1>
+<div class="meta">Tanya Rajani &nbsp;·&nbsp; Kunal Pandey &nbsp;·&nbsp; IFT Sales & Marketing Lead &nbsp;·&nbsp; Prepared by MD Office &nbsp;·&nbsp; May 2026</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="show('compare',this)">Comparison</button>
+  <button class="tab" onclick="show('tanya',this)">Tanya — Evaluation</button>
+  <button class="tab" onclick="show('kunal',this)">Kunal — Evaluation</button>
+  <button class="tab" onclick="show('qa',this)">Interview Q&A Guide</button>
+</div>
+
+<!-- COMPARISON -->
+<div id="sec-compare" class="sec active">
+  <div class="card">
+    <div class="card-title">Side-by-side scorecard</div>
+    <table>
+      <thead><tr><th>Dimension</th><th>Tanya Rajani</th><th>Kunal Pandey</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Presentation quality</td>
+          <td class="ok">★★★★★ — Professional, designed, coherent flow</td>
+          <td class="caution">★★★☆☆ — Report format, dense but readable</td>
+        </tr>
+        <tr>
+          <td>Make in India constraint</td>
+          <td class="warn">✗ Completely absent</td>
+          <td class="ok">✓ 60/40 breakdown with clear rationale</td>
+        </tr>
+        <tr>
+          <td>India market depth</td>
+          <td class="warn">Shallow — SE Asia treated as one block</td>
+          <td class="ok">Specific — buyer psychology, government schemes, city-level detail</td>
+        </tr>
+        <tr>
+          <td>IFT-specific context</td>
+          <td class="warn">Minimal — generic FIG analysis</td>
+          <td class="caution">Partial — InfoTrack clients named, transition not addressed</td>
+        </tr>
+        <tr>
+          <td>Withdrawal / discipline</td>
+          <td class="warn">No selective thinking — all verticals treated equally</td>
+          <td class="warn">Drone recommended despite known constraints</td>
+        </tr>
+        <tr>
+          <td>Independent insight</td>
+          <td class="ok">Website audit — English gap, no B2B CTA</td>
+          <td class="ok">Indian buyer psychology 6 points — relationship-first, ROI-driven</td>
+        </tr>
+        <tr>
+          <td>Actionability</td>
+          <td class="warn">90-day plan is generic template</td>
+          <td class="caution">Structural recommendations present but no named contacts</td>
+        </tr>
+        <tr>
+          <td>Doctrine alignment</td>
+          <td class="caution">Not yet tested in this output</td>
+          <td class="caution">Not yet tested in this output</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">The honest summary</div>
+    <div class="row blue"><div class="dot" style="background:#185FA5"></div>
+      <div class="row-text"><strong>Kunal's report is analytically stronger.</strong>
+        <div class="row-sub">He absorbed the Make in India constraint, structured a 60/40 solution, researched government schemes (PLI, Drone Shakti), and articulated Indian buyer psychology with specificity. The thinking is visible on the page.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#1D9E75"></div>
+      <div class="row-text"><strong>Tanya's execution instinct is stronger.</strong>
+        <div class="row-sub">Her website audit was sharp and self-initiated. Her presentation packaging is client-ready. Her IoT sales background is directly relevant. She can walk into a room and represent IFT.</div>
+      </div>
+    </div>
+    <div class="row amber"><div class="dot" style="background:#BA7517"></div>
+      <div class="row-text"><strong>Neither candidate has demonstrated the withdrawal discipline the Doctrine requires.</strong>
+        <div class="row-sub">Tanya ignored the constraint entirely. Kunal recommended drones despite knowing manufacturing is not feasible for IFT now. Today's interview must test this directly.</div>
+      </div>
+    </div>
+    <div class="highlight" style="margin-top:1rem">
+      <div class="section-label" style="margin-bottom:6px">The deciding factor today</div>
+      <p style="font-size:13px;line-height:1.8">The question is not who wrote the better report. It is: <strong>who can change their recommendation under pressure, explain why, and still walk out of the room with the conversation going forward?</strong> That is the Sales strategist IFT needs. The interview questions below are designed to surface exactly that.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TANYA -->
+<div id="sec-tanya" class="sec">
+  <div class="card">
+    <div class="card-title">Tanya Rajani — Report Evaluation</div>
+    <div class="card-sub">10-slide PPT. "FIG Inc. — Strategic Business Analysis: A Marketer's Perspective."</div>
+
+    <div class="section-label">What works</div>
+    <div class="row green"><div class="dot" style="background:#1D9E75"></div>
+      <div class="row-text"><strong>Website audit is the strongest slide</strong>
+        <div class="row-sub">"No English-first landing page, no B2B CTAs, product pages buried under investor content, no lead capture." This is self-initiated, accurate, and directly actionable. She identified the same gap IFT's own website redesign is trying to close.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#1D9E75"></div>
+      <div class="row-text"><strong>Closing positioning statement shows independent thinking</strong>
+        <div class="row-sub">"FIG Inc. is not just a technology company; it is a Smart Society infrastructure builder." This is her interpretation, not a quote from the website. It signals she is trying to build a sales narrative, not just summarise facts.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#1D9E75"></div>
+      <div class="row-text"><strong>Design and flow are client-ready</strong>
+        <div class="row-sub">The PPT could be handed to a Japanese partner today. That is a real skill for a Sales & Marketing role where first impressions matter.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">Critical gaps</div>
+    <div class="row red"><div class="dot" style="background:#e24b4a"></div>
+      <div class="row-text"><strong>India is almost absent</strong>
+        <div class="row-sub">She was asked to analyse India market entry. India appears as part of "Southeast Asia" — no India-specific insight, no city-level thinking, no regulatory context. This is the core assignment and it was not completed.</div>
+      </div>
+    </div>
+    <div class="row red"><div class="dot" style="background:#e24b4a"></div>
+      <div class="row-text"><strong>Make in India constraint ignored entirely</strong>
+        <div class="row-sub">She was told about the 60% local content requirement. It does not appear anywhere in the document. This suggests the constraint was not absorbed or was set aside as inconvenient.</div>
+      </div>
+    </div>
+    <div class="row red"><div class="dot" style="background:#e24b4a"></div>
+      <div class="row-text"><strong>90-day action plan is a generic template</strong>
+        <div class="row-sub">"Identify 50 prospects in logistics, hotels and transport." Which 50? In which cities? Through which channels? The plan has no IFT-specific content — it could have been written for any B2B company entering any market.</div>
+      </div>
+    </div>
+    <div class="row amber"><div class="dot" style="background:#BA7517"></div>
+      <div class="row-text"><strong>Drone and Smart City recommended without constraint awareness</strong>
+        <div class="row-sub">She includes Drone-as-a-Service and Smart City government contracts as growth levers — both areas IFT has assessed as not viable in the near term. No selective thinking is visible.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KUNAL -->
+<div id="sec-kunal" class="sec">
+  <div class="card">
+    <div class="card-title">Kunal Pandey — Report Evaluation</div>
+    <div class="card-sub">7-page report. "FIG Inc. — India Market Entry Opportunity Analysis."</div>
+
+    <div class="section-label">What works</div>
+    <div class="row green"><div class="dot" style="background:#1D9E75"></div>
+      <div class="row-text"><strong>Make in India 60/40 breakdown is the strongest section</strong>
+        <div class="row-sub">He did not avoid the constraint — he structured a solution around it. Fleet management: 60% India (software, cloud, assembly, after-sales) / 40% Japan (firmware, hardware IP, quality certification). This is the right analytical move.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#1D9E75"></div>
+      <div class="row-text"><strong>Indian buyer psychology — 6 points with real specificity</strong>
+        <div class="row-sub">Japanese Brand = Quality Trust. Relationship-first culture. ROI-driven decision-making (lead with rupee savings). Government contracts as trust accelerators. Mobile-first UX requirement. SaaS/subscription preferred over capex. These are accurate and actionable for IFT's sales approach.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#1D9E75"></div>
+      <div class="row-text"><strong>Named IFT's existing clients correctly</strong>
+        <div class="row-sub">Citibank, DP World, Ericsson, Ford, Toyota, Shell, Wipro — he researched InfoTrack's actual client base. This shows genuine due diligence beyond the FIG website.</div>
+      </div>
+    </div>
+    <div class="row green"><div class="dot" style="background:#1D9E75"></div>
+      <div class="row-text"><strong>Government scheme research is detailed</strong>
+        <div class="row-sub">PLI for drones (₹120 crore allocation), Drone Shakti, Namo Drone Didi, iCreate Drone Challenge. This level of specific research demonstrates the ability to find non-obvious information independently.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">Critical gaps</div>
+    <div class="row red"><div class="dot" style="background:#e24b4a"></div>
+      <div class="row-text"><strong>Drone recommendation contradicts the manufacturing reality</strong>
+        <div class="row-sub">He notes "India has restricted import of foreign drones — must manufacture here" — and then recommends it anyway, proposing assembly in Hyderabad or Bangalore. IFT cannot build or manage a drone assembly facility. The logic identifies the constraint but does not resolve it.</div>
+      </div>
+    </div>
+    <div class="row red"><div class="dot" style="background:#e24b4a"></div>
+      <div class="row-text"><strong>AIS-140 misapplied to MDVR</strong>
+        <div class="row-sub">He cites AIS-140 as demand driver for IFT's fleet product. AIS-140 applies to basic GPS tracking devices, not to MDVR. This factual error suggests the technical distinction between GPS trackers and MDVR was not fully grasped.</div>
+      </div>
+    </div>
+    <div class="row amber"><div class="dot" style="background:#BA7517"></div>
+      <div class="row-text"><strong>KTS / hotel section lacks India-specific insight</strong>
+        <div class="row-sub">He correctly identifies KTS as the hotel tech vehicle and cites market size numbers. But the MyGate integration angle, the Hikvision replacement cycle, and the mid-scale apartment opportunity — all discussed in briefing — do not appear.</div>
+      </div>
+    </div>
+    <div class="row amber"><div class="dot" style="background:#BA7517"></div>
+      <div class="row-text"><strong>No named prospects or partners</strong>
+        <div class="row-sub">The structural recommendations (FIG India Liaison Office, Startup India registration, Partner-First GTM) are directionally right but abstract. No partner names, no target company names, no specific entry point.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Q&A GUIDE -->
+<div id="sec-qa" class="sec">
+
+  <div class="card" style="border-color:#7F77DD;margin-bottom:1.5rem">
+    <div class="card-title" style="color:#3c3489">How to use this guide</div>
+    <div class="card-sub">Questions are sequenced: open with the report → probe the constraint → test the Doctrine → close with the transition reality. For each question, "Strong answer" shows what a strategist says. "Concern signal" shows what a closer says. The gap between those two is your hiring filter.</div>
+  </div>
+
+  <!-- SHARED OPENING -->
+  <div class="section-label" style="margin-bottom:8px">Opening — for both candidates</div>
+
+  <div class="q-block both">
+    <div class="q-label">Q0 — Opening · Both</div>
+    <div class="q-text">"Before we go into questions — take two minutes. Tell me one thing in your report you wish you had done differently, and why."</div>
+    <div class="q-section">What this surfaces</div>
+    <div class="q-content">Self-awareness and intellectual honesty. A strategist will immediately identify the gap (Tanya: India was thin / Kunal: drone recommendation was contradictory). A closer will say "I'm happy with it" or make cosmetic comments about slide design.</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">Names a substantive gap, explains what they would have done instead, and shows they understand why it mattered for the assignment.</div>
+    <div class="q-warn">Concern: "I would have added more data" or "the design could be better." Surface-level.</div>
+  </div>
+
+  <!-- TANYA QUESTIONS -->
+  <div class="section-label" style="margin:1.5rem 0 8px">Tanya — specific questions</div>
+
+  <div class="q-block tanya">
+    <div class="q-label">Q1 — Tanya · India Gap</div>
+    <div class="q-text">"Your report analyses FIG as a group. But the assignment was India market entry. Walk me through your thinking on India specifically — what did you find most difficult to figure out, and where did you land?"</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">Acknowledges the gap directly. Explains what she would have focused on — fleet in Bangalore, hotel in Tier-2 cities, the Hikvision replacement angle. Shows she knows what was missing and can fill it in conversation.</div>
+    <div class="q-warn">Concern: Defends the current output. Points to the Southeast Asia slide as India coverage. Cannot name a specific Indian city, sector, or entry point.</div>
+  </div>
+
+  <div class="q-block tanya">
+    <div class="q-label">Q2 — Tanya · Constraint Test</div>
+    <div class="q-text">"You included Drone-as-a-Service and Smart City government contracts as growth levers. We discussed that drone manufacturing requires 60% local content — which IFT cannot manage right now. And government tenders at city scale take 2–3 years. Does that change your recommendation? What would you remove?"</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">Immediately withdraws those recommendations. Refocuses on fleet MDVR and KTS hotel as the two viable near-term paths. Does not defend the original output under pressure.</div>
+    <div class="q-warn">Concern: "These are long-term opportunities worth keeping on the roadmap." Inability to discard under pressure is a Doctrine failure.</div>
+  </div>
+
+  <div class="q-block tanya">
+    <div class="q-label">Q3 — Tanya · Specificity</div>
+    <div class="q-text">"Your 90-day plan says identify 50 high-value prospects. Give me three company names — specific Indian companies — that IFT should approach first for fleet telematics. And tell me why those three."</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">Names companies she actually knows — Delhivery, Blue Dart, GATI, VRL Logistics, Mahindra Logistics, or similar. Explains the fit: fleet size, sector, openness to IoT. Shows real market knowledge not borrowed from a global market report.</div>
+    <div class="q-warn">Concern: Names generic categories ("large logistics companies") or global names (Amazon, Flipkart) without specific reasoning. Report-level thinking, not sales-level thinking.</div>
+  </div>
+
+  <div class="q-block tanya">
+    <div class="q-label">Q4 — Tanya · Withdrawal Experience</div>
+    <div class="q-text">"Tell me about a deal or a client you chose to walk away from — not because the budget was zero, but because something about the engagement told you it was wrong. What did you see, and what did you do?"</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">A specific story with: a clear diagnosis of why the client was wrong (values, procurement culture, expectations mismatch), the internal pressure she faced to keep pursuing, and what validated the decision in retrospect. The Escort sensor example she mentioned in the first interview should surface here with more detail.</div>
+    <div class="q-warn">Concern: Story where the client walked away first, or where "walking away" meant stopping follow-up emails. Passive withdrawal, not strategic withdrawal.</div>
+  </div>
+
+  <!-- KUNAL QUESTIONS -->
+  <div class="section-label" style="margin:1.5rem 0 8px">Kunal — specific questions</div>
+
+  <div class="q-block kunal">
+    <div class="q-label">Q1 — Kunal · Drone Contradiction</div>
+    <div class="q-text">"You wrote that India restricts import of foreign drones and ciRobotics must manufacture locally. You then recommended establishing an assembly facility in Hyderabad or Bangalore. IFT does not have the people, supply chain, or capital to run a drone manufacturing facility right now. Does your drone recommendation stand — and if not, what replaces it?"</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">Withdraws the drone recommendation immediately and cleanly. Redirects to fleet and hotel as the two viable tracks. May propose drones as a Year 3+ option via a local manufacturing JV — which is intellectually honest. Does not defend the original logic.</div>
+    <div class="q-warn">Concern: "The PLI scheme makes it feasible" or "we can find a local partner." Still trying to make drone work rather than making the strategic call to set it aside.</div>
+  </div>
+
+  <div class="q-block kunal">
+    <div class="q-label">Q2 — Kunal · AIS-140 Clarification</div>
+    <div class="q-text">"You cited AIS-140 as a demand driver for IFT's fleet product. AIS-140 mandates basic GPS tracking for public transport — it does not require MDVR. How does IFT's MDVR differentiate from an AIS-140 compliant GPS device — and who is the actual buyer?"</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">Acknowledges the distinction immediately. Correctly identifies that MDVR's value is above AIS-140 compliance — driver safety, fuel fraud evidence, AI video analysis, route intelligence. The buyer is the fleet operator seeking accountability and cost reduction, not just regulatory compliance.</div>
+    <div class="q-warn">Concern: Defends the AIS-140 framing or cannot distinguish between the two products. Technical misunderstanding that would hurt credibility in sales conversations with fleet CTOs.</div>
+  </div>
+
+  <div class="q-block kunal">
+    <div class="q-label">Q3 — Kunal · From Analysis to Action</div>
+    <div class="q-text">"Your buyer psychology section says relationship-first culture — business is built on trust before contracts. Give me a specific example from your own sales experience where you had to build that trust from zero with an Indian enterprise buyer. How long did it take, what did you do, and what was the first signal that the relationship had actually formed?"</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">A specific named story — not a framework. The timeline is honest (months, not weeks). The trust signal is concrete and human — a conversation that shifted from formal to informal, an introduction to a colleague, a call that wasn't scheduled. Shows the theory has been lived, not just read.</div>
+    <div class="q-warn">Concern: Describes a process ("I did regular follow-ups and sent case studies") rather than a relationship. Academic answer to a human question.</div>
+  </div>
+
+  <div class="q-block kunal">
+    <div class="q-label">Q4 — Kunal · Web3 to Telematics</div>
+    <div class="q-text">"Your last two roles were in Web3 and blockchain — products that are intangible, speculative, and sold largely on vision. IFT's products are physical, embedded in vehicles, and sold on reliability and RCA depth. What do you expect to be hardest about making that shift — and how do you plan to close that gap in the first 90 days?"</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">Honest about the gap. Names something specific — "I have never been on a fleet operator's premises, I don't know the physical reality of what breaks and why." Plans concrete steps: ride-alongs with the IFT technical team, reading protocol documentation, visiting a client site in the first 30 days. Shows the gap is understood, not minimised.</div>
+    <div class="q-warn">Concern: "Selling complex technology is selling complex technology." Equivalence argument — does not acknowledge the domain shift is real and significant.</div>
+  </div>
+
+  <!-- SHARED CLOSING -->
+  <div class="section-label" style="margin:1.5rem 0 8px">Closing — for both candidates</div>
+
+  <div class="q-block both">
+    <div class="q-label">Q5 — Closing · Both · Transition Honesty</div>
+    <div class="q-text">"One thing I want to be direct about: IFT is mid-transition. When you join, you will see the gap between where we are today and where InfoTrack X is going. Some of our current service quality and product positioning is still being rebuilt. What specifically would concern you most about joining in that state — and what would you need from leadership to make it work?"</div>
+    <div class="q-section">Strong answer</div>
+    <div class="q-content">Names real concerns — being asked to sell a product that isn't ready, internal resistance to the new direction, unclear commission structure during transition, no established playbook. Then asks for something specific from leadership: clear mandate, access to the technical team, honest communication when the product isn't ready. Shows they have thought about what they are actually walking into.</div>
+    <div class="q-section">The signal we are looking for</div>
+    <div class="q-content">Does the transparency make them more interested or less? A strategist who understands turnarounds will lean in. A closer who needs a finished platform to sell will show hesitation. Both reactions are valid data — the wrong reaction is no reaction at all.</div>
+    <div class="q-warn">Concern: "I love a challenge, I'm not worried." No concerns expressed. Either not listening or performing enthusiasm. Both are problems.</div>
+  </div>
+
+  <div class="highlight" style="margin-top:1.5rem">
+    <div class="section-label" style="margin-bottom:8px">The final test — after the session ends</div>
+    <p style="font-size:13px;line-height:1.85">Ask yourself one question: <strong>Did this person say anything that surprised me — something I had not considered, a reframe I did not expect, a question that showed they were thinking beyond the assignment?</strong><br><br>
+    A strategist leaves you with something new. A salesperson leaves you feeling good about the conversation. IFT needs the former. The transition ahead requires someone who will push back on the wrong direction before the contract is signed — not after.</p>
+  </div>
+
+</div>
+
+<script>
+function show(name, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + name).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
